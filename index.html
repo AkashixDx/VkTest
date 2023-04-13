@@ -71,9 +71,9 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/Game.loader.js";
     var config = {
-      dataUrl: buildUrl + "/09f7a59b5cf9435767b6a6bcc08130ef.data.unityweb",
-      frameworkUrl: buildUrl + "/169cde374aa160fa82832d1d10014cb4.js.unityweb",
-      codeUrl: buildUrl + "/8c9f75493f9d6ff0e6107f4cf8299ee6.wasm.unityweb",
+      dataUrl: buildUrl + "/d650522a672f26573552d430606eedc7.data.unityweb",
+      frameworkUrl: buildUrl + "/4cf9554600164baa6655669a995b4b25.js.unityweb",
+      codeUrl: buildUrl + "/55fd1083c91067ffe3ae152f07c57fb4.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "Mining Game 3D",
@@ -110,7 +110,7 @@
           const bridge = vkBridge.default;
           bridge.send("VKWebAppShowNativeAds", {ad_format:adFormat, use_waterfall:waterfall});
 		  bridge.subscribe((e) => {
-          if(e.detail.data.result == true) {
+          if(e.detail.type == 'VKWebAppShowNativeAdsResult' && e.detail.data.result == true) {
               ss.SendMessage('VkBridge', 'ShowAdsResult', 'good');
           }
           if(e.detail.type == 'VKWebAppShowNativeAdsFailed') {
