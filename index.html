@@ -71,9 +71,9 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/Game.loader.js";
     var config = {
-      dataUrl: buildUrl + "/Game.data.unityweb",
-      frameworkUrl: buildUrl + "/Game.framework.js.unityweb",
-      codeUrl: buildUrl + "/Game.wasm.unityweb",
+      dataUrl: buildUrl + "/3a1949b51666e38690c908c38ebe1de8.data.unityweb",
+      frameworkUrl: buildUrl + "/169cde374aa160fa82832d1d10014cb4.js.unityweb",
+      codeUrl: buildUrl + "/6a55d2c081d3f2044b27fd1d2b382012.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "Mining Game 3D",
@@ -105,19 +105,19 @@
           bridge.subscribe((e) => console.log("vkBridge event", e));
           bridge.send("VKWebAppInit", {});
       }
-  
-	function showRewardedAd(id){   
-	bridge.send('VKWebAppShowNativeAds', { ad_format: 'reward' })
-    .then((data) => {
-      if (data.result) // Успех
-        ss.SendMessage('VkBridge', 'OnRewarded', id);
-      else // Ошибка 
-        console.log('Ошибка при показе');
-    })
-    .catch((error) => { console.log(error); /* Ошибка */ });
+      function showAd(adFormat, waterfall){
+
+          const bridge = vkBridge.default;
+          bridge.send("VKWebAppShowNativeAds", {ad_format:adFormat, use_waterfall:waterfall});
+		  bridge.subscribe((e) => {
+          if(e.detail.type == 'VKWebAppShowNativeAdsResult' && e.detail.data.result == true) {
+              ss.SendMessage('VkBridge', 'ShowAdsResult', 'good');
+          }
+          if(e.detail.type == 'VKWebAppShowNativeAdsFailed') {
+             ss.SendMessage('VkBridge', 'ShowAdsResult', 'noGood');
+          }
+        });
       }
-		
-	  
       function sendPost(text){
           const bridge = vkBridge.default;
           bridge.send("VKWebAppShowWallPostBox", {
