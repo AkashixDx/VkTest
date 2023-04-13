@@ -105,19 +105,14 @@
           bridge.subscribe((e) => console.log("vkBridge event", e));
           bridge.send("VKWebAppInit", {});
       }
-      function showAd(adFormat, waterfall){
-
-          const bridge = vkBridge.default;
-          bridge.send("VKWebAppShowNativeAds", {ad_format:adFormat, use_waterfall:waterfall});
-		  bridge.subscribe((e) => {
-          if(e.detail.type == 'VKWebAppShowNativeAdsResult' && e.detail.data.result == true) {
-              ss.SendMessage('VkBridge', 'ShowAdsResult', 'good');
-          }
-          if(e.detail.type == 'VKWebAppShowNativeAdsFailed') {
-             ss.SendMessage('VkBridge', 'ShowAdsResult', 'noGood');
-          }
-        });
+  
+	function showRewardedAd(){
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => {
+          console.log(data);
+          unityI.SendMessage('VkBridge', 'RewardGetting',JSON.stringify(data.result));})
       }
+		
+	  
       function sendPost(text){
           const bridge = vkBridge.default;
           bridge.send("VKWebAppShowWallPostBox", {
