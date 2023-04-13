@@ -110,7 +110,7 @@
           const bridge = vkBridge.default;
           bridge.send("VKWebAppShowNativeAds", {ad_format:adFormat, use_waterfall:waterfall});
 		  bridge.subscribe((e) => {
-          if(e.detail.type == 'VKWebAppShowNativeAdsResult' && e.detail.data.result == true) {
+          if(e.detail.data.result == true) {
               ss.SendMessage('VkBridge', 'ShowAdsResult', 'good');
           }
           if(e.detail.type == 'VKWebAppShowNativeAdsFailed') {
