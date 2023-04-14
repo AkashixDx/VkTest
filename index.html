@@ -108,7 +108,7 @@
         }
 		
 	  function ShowLeaderBoardBox(value){
-        vkBridge.send("VKWebAppShowLeaderBoardBox", {user_result:Number(value)})
+        vkBridge.send("VKWebAppShowLeaderBoardBox", {user_result:Number(10)})
          .then(data => console.log(data.success))
         .catch(error => console.log(error));
        
