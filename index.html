@@ -128,10 +128,10 @@
           console.log(data);});
       }
 
-      function showRewardedAd(){
+      function showRewardedAd(id){
         vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => {
           console.log(data);
-          unityI.SendMessage('VKSDK', 'RewardGetting',JSON.stringify(data.result));})
+          unityI.SendMessage('VKSDK', 'RewardGetting', id);})
       }
 
 
