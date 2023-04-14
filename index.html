@@ -56,7 +56,7 @@
           progressBarFull.style.width = displayProgress + "%";
           progressText.innerHTML = Math.round(displayProgress) + "%";
         }).then((unityInstance) => {
-		 unityI = unityInstance;
+		unityI = unityInstance;
           loadingBar.style.display = "none";
         }).catch((message) => {
           alert(message);
@@ -129,10 +129,10 @@
 			});
 			vkBridge.subscribe((e) => {
 			if(e.detail.type == 'VKWebAppShowSubscriptionBoxResult') {
-				unityI.SendMessage('VKSDK', 'SubscriptionBoxResult', e.detail.data.success);
+				ss.SendMessage('VKSDK', 'SubscriptionBoxResult', e.detail.data.success);
 			}
 			if(e.detail.type == 'VKWebAppShowSubscriptionBoxFailed') {
-				unityI.SendMessage('VKSDK', 'SubscriptionBoxResult', 'error');
+				ss.SendMessage('VKSDK', 'SubscriptionBoxResult', 'error');
 			}
         });
 		}
@@ -144,10 +144,10 @@
 			});
 			vkBridge.subscribe((e) => {
 			if(e.detail.type == 'VKWebAppShowSubscriptionBoxResult') {
-				unityI.SendMessage('VKSDK', 'SubscriptionBoxResult', e.detail.data.success);
+				ss.SendMessage('VKSDK', 'SubscriptionBoxResult', e.detail.data.success);
 			}
 			if(e.detail.type == 'VKWebAppShowSubscriptionBoxFailed') {
-				unityI.SendMessage('VKSDK', 'SubscriptionBoxResult', 'error');
+				ss.SendMessage('VKSDK', 'SubscriptionBoxResult', 'error');
 			}
         });
 		}
@@ -168,9 +168,9 @@
 			}
 		}
         vkBridge.send(nameMethod, obj).then(data => {
-			unityI.SendMessage('VKSDK', 'SendResult', JSON.stringify(data));})
+			ss.SendMessage('VKSDK', 'SendResult', JSON.stringify(data));})
 		.catch(error => {
-			unityI.SendMessage('VKSDK', 'SendResult', JSON.stringify(error));
+			ss.SendMessage('VKSDK', 'SendResult', JSON.stringify(error));
 		});;
 	  }
 
