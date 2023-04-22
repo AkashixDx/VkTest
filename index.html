@@ -95,10 +95,10 @@
           console.log(data);});
       }
 	  
-	  function showBottomBannerAd(){
-        vkBridge.send('VKWebAppShowBannerAd',{banner_location: "bottom"}).then(data => {
-          console.log(data);});
-      }
+	//  function showBottomBannerAd(){
+      //  vkBridge.send('VKWebAppShowBannerAd',{banner_location: "bottom"}).then(data => {
+      //    console.log(data);});
+      //}
 
       function showRewardedAd(id){
         vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => {
